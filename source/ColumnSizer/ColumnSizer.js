@@ -75,7 +75,10 @@ export default class ColumnSizer extends PureComponent {
     let columnWidth = width / columnCount
     columnWidth = Math.max(safeColumnMinWidth, columnWidth)
     columnWidth = Math.min(safeColumnMaxWidth, columnWidth)
-    columnWidth = Math.floor(columnWidth)
+
+    // Rounding to two decimal places to avoid the sum of column widths being less than the grid
+    // width.
+    columnWidth = Math.round(columnWidth * 100) / 100;
 
     let adjustedWidth = Math.min(width, columnWidth * columnCount)
 
